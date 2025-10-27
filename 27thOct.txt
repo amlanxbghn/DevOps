@@ -1,0 +1,48 @@
+Microservices and DevOps: Core Concepts
+---------------------------------------
+
+Introduction to Microservices :
+-------------------------------
+    What are Microservices? :
+
+        -> Architectural style where an application is a collection of loosely coupled, fine-grained services.
+
+        -> Each service uses a lightweight protocol.
+
+        -> Contrast with monolithic architecture (single unit) by being smaller and autonomously deployable.
+    
+    Benefits of Microservices :
+
+        -> Scalability: Components can be scaled independently and efficiently.
+
+        -> Flexibility in Technology Stack: Different services can use different languages/frameworks (best tool for the job).
+
+        -> Independent Deployment: Facilitates quicker releases.
+    
+    Key Concepts in Microservices:
+
+        -> REST API Communication: Services interact via REST APIs (using HTTP/HTTPS), ensuring language independence.
+
+        -> Statelessness: Services don't store state themselves; they rely on data stores. This allows for easy reproduction and scaling.
+
+        -> Externalized Logging: Essential for tracing system events/failures. Tools: Fluentd, ELK Stack, Splunk for aggregation/search.
+
+        -> Load Balancing: Distributes incoming traffic across servers to prevent overwhelming and enhance stability/availability.
+
+        -> DNS (Domain Name System): Translates domain names into IP addresses (easier for humans to remember).
+
+DevOps Introduction :
+---------------------
+    Importance of DevOps:
+
+        -> Integrates Dev (Software Development) and Ops (IT Operations).
+
+        -> Goal: Shorten the software development lifecycle and provide continuous delivery with high quality.
+
+    Continuous Integration/Continuous Deployment (CI/CD):
+
+        -> CI (Continuous Integration): Automatically testing and integrating new code changes into a shared repository multiple times a day.
+
+        -> CD (Continuous Deployment): Automates deployment of code changes to a production environment.
+
+        -> Emphasis on a complete CI/CD pipeline (tools and examples were suggested).
