@@ -1,0 +1,79 @@
+DevOps Class Revision Notes
+---------------------------
+
+Overview of DevOps:
+-------------------
+    What is DevOps?
+
+        -> A set of practices, cultural philosophies, and tools that integrate software development (Dev) and IT operations (Ops).
+
+        -> Goal: Deliver applications and services more rapidly and reliably.
+
+    Challenges in DevOps
+
+        -> The cultural philosophies and change management are particularly challenging.
+
+        -> Requires convincing teams to adopt new methodologies over long-established processes.
+
+    Key Concepts
+
+        -> DevOps Philosophy: Applying principles to unify Dev and Ops.
+
+        -> Shift Left Approach: Emphasizes integrating testing and quality checks earlier in the development process.
+
+Security Testing in DevOps:
+---------------------------
+
+    Types of Security Testing
+
+        -> SAST (Static Application Security Testing): Analyzes code for vulnerabilities without executing it.
+
+        -> DAST (Dynamic Application Security Testing): Analyzes the application in a running state to find vulnerabilities.
+
+        -> SCA (Software Composition Analysis): Checks for vulnerabilities in open-source and third-party components/libraries.
+
+    Code Vulnerability Example
+
+        -> SQL Injection Attack is a common vulnerability.
+
+        -> Mitigation: Using PreparedStatement in Java to safely escape input parameters (instead of Statement).
+
+CI/CD Process:
+--------------
+
+    Continuous Integration (CI) Process
+
+        The core steps to ensure code integrity:
+
+        -> Code Checkout (download latest from repository).
+
+        -> Dependency Management (installing necessary components).
+
+        -> Linting (ensuring code quality/maintainability).
+
+        -> Building (compiling and packaging).
+
+        -> Testing (running unit tests).
+
+        -> Security Checks (running SCA and SAST tools).
+
+        -> Artifact Creation (generating deployable units like Docker images).
+
+        -> Deployment to a staging environment.
+
+    Continuous Deployment (CD) Process
+
+        -> Automates the deployment process after CI passes.
+
+        -> Manual intervention is only needed for predetermined issues or thresholds.
+
+        -> Goal: Achieve a smooth, automated deployment pipeline.
+
+Communication & Coordination:
+-----------------------------
+
+API Gateway and Microservices
+
+    -> API Gateway: Routes requests to appropriate microservices and handles tasks like authorization and throttling.
+
+    -> Inter-Service Communication: Microservices communicate synchronously (real-time, blocking) or asynchronously (non-blocking, often using message brokers like RabbitMQ or Kafka)
