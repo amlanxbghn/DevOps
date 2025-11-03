@@ -1,0 +1,92 @@
+🐚 Introduction to Shell Scripting
+---------------------------------------
+
+Shell Basics:
+-------------------------------
+    Core Function:
+            -> Shell scripting is an essential skill for automating tasks in **UNIX** and **Linux** environments.
+            -> Shell scripts are simple programs executed by the **shell**, a command-line interpreter.
+
+Script Creation and Execution:
+-------------------------------------
+    Creating a Script:
+            -> File Extension: Start by creating a new file with a **.sh** extension, e.g., `hello_world.sh`.
+            -> Shebang: Begin the script with **#!** followed by the path to an interpreter, usually **#!/bin/bash**.
+            -> Content: The script can include various shell commands and syntax for automation.
+
+    Script Execution:
+            -> Make Executable: Use **chmod +x filename.sh** to make the script executable.
+            -> Run: Run the script by typing **./filename.sh**.
+
+Variables and Data:
+-----------------------------
+    Variable Usage:
+            -> Define: Use **variable_name=value**. By convention, **uppercase** is used, e.g., `USERNAME="JohnDoe"`.
+            -> Access: Access variables with the **$VARIABLE_NAME** syntax.
+            -> Input: Input can be read using the **read -p "Prompt: " VARIABLE** command.
+
+Conditionals and Loops:
+--------------------------------
+    Control Flow:
+            -> Conditionals (if): Used for conditional execution. Use **[ condition ]** to evaluate conditions.
+            -> File Check: Use **-f <file>** to check if a file exists within an if statement.
+            -> Loops: **for** and **while** are used to iterate over sequences or conditions.
+
+🔒 File Permissions and Management
+------------------------------------------
+
+File and Directory Management:
+-------------------------------------
+    Basic Operations:
+            -> Create/Navigate: Use **mkdir** to create directories and **cd** to navigate them.
+            -> Create Files: Use **touch** or **cat > filename** to create files.
+
+    Common Commands:
+            -> Essentials: **ls**, **pwd**, **cd**, **rm**, **cp**, **mv** are basic but essential commands.
+            -> Caution: Commands such as **rm -rf** are used cautiously as they remove directories recursively and forcefully.
+
+File Permissions:
+-------------------------
+    Permissions Control:
+            -> Modification: Permissions for **users**, **groups**, and **others** are crucial and can be modified using **chmod**.
+            -> Notations: Permission notations include **rwx** which stand for **read**, **write**, and **execute** permissions.
+            -> Advanced: **Access Control Lists (ACLs)** allow for more granular permission settings compared to the traditional chmod.
+
+🔍 String Manipulation and Utilities
+--------------------------------------------
+
+String Manipulation:
+---------------------------
+    Text Transformation:
+            -> Tools: Use commands like **tr**, **sed**, and **awk** for transforming text.
+            -> Example (Uppercasing): Can be achieved with **echo $STRING | tr [a-z] [A-Z]**.
+
+Find and Locate Commands:
+----------------------------------
+    Search Utility:
+            -> The **find** command: Powerful for searching files based on patterns, types, and other attributes.
+            -> Syntax: **find <path> -name <pattern>**.
+
+Regular Expressions (Regex):
+------------------------------------
+    Text Processing:
+            -> Importance: Regular expressions are vital for text processing within the shell, though not covered extensively in the class.
+
+🚀 Advanced Scripting Concepts
+---------------------------------------
+
+Function Definition and Usage:
+------------------------------------
+    Code Reusability:
+            -> Definition: Functions encapsulate reusable code blocks.
+            -> Syntax:
+my_function() {
+    commands
+}
+            -> Call: Call functions by their name, **my_function**.
+
+User and Group Management:
+----------------------------------
+    Administration Automation:
+            -> Commands: Shell scripts can automate the creation of users and groups using **useradd** and **groupadd**.
+            -> Tasks: This involves setting default shells, welcome messages, and permissions.
