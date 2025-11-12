@@ -1,0 +1,112 @@
+Software Engineering Class on Docker
+------------------------------------
+
+Introduction to Docker:
+---------------------------------------------
+    -> Docker is a platform that enables developers to automate the deployment, management, scaling, and operations of application containers.
+    -> It simplifies the process of packaging applications with all their dependencies into isolated environments called containers.
+    -> The class focused on understanding Docker’s core functionalities, including:
+           - Image creation
+           - Writing and using Dockerfiles
+           - Running and managing containers through basic and advanced Docker commands.
+
+Key Concepts Explained:
+---------------------------------------------
+
+    Docker Images and Containers:
+            -> Docker Image:
+                    - A Docker image serves as a template for creating containers.
+                    - It contains everything required for an application to run — code, runtime, libraries, and configuration files.
+                    - Images are immutable and form the building blocks for containers.
+            -> Docker Container:
+                    - A container is a lightweight, isolated environment created from a Docker image.
+                    - Similar to a virtual machine but more efficient because it shares the host operating system’s kernel.
+                    - Containers are portable, consistent, and faster to start compared to VMs.
+
+Basic Commands and Usage:
+---------------------------------------------
+    -> docker build:
+            - Used to build Docker images from a Dockerfile.
+            - Syntax: docker build -t <image_name> .
+            - The -t flag assigns a name (tag) to the image.
+            - Best practice: Tags should always be lowercase.
+    -> docker run:
+            - Starts a new container from a specified image.
+            - Common options:
+                    - -d: Run the container in detached mode (background).
+                    - -p: Map host ports to container ports for network access.
+            - Example: docker run -d -p 8080:80 nginx
+                    → Runs an NGINX container in detached mode, mapping port 8080 on the host to port 80 in the container.
+
+Dockerfile Essentials:
+---------------------------------------------
+    -> A Dockerfile is a script containing a list of instructions used to assemble a Docker image.
+    -> Each instruction in a Dockerfile creates a new layer in the resulting image.
+    -> Common commands and their purposes include:
+            FROM:
+                    - Defines the base image from which the new image will be built.
+                    - Example: FROM ubuntu:20.04
+            RUN:
+                    - Executes commands during the image build phase.
+                    - Each RUN command adds a new layer, so combining commands using “&&” is recommended to minimize layers.
+                    - Example: RUN apt-get update && apt-get install -y python3
+            CMD and ENTRYPOINT:
+                    - Define default commands to run when the container starts.
+                    - CMD can be overridden by additional command-line arguments.
+                    - ENTRYPOINT, however, is fixed and not overridden.
+                    - Example:
+                            CMD ["npm", "start"]
+                            ENTRYPOINT ["python3", "app.py"]
+
+Advanced Concepts:
+---------------------------------------------
+    -> Multi-stage Builds:
+            - Used to create optimized images by separating build and runtime environments.
+            - The first stage may contain all build tools (e.g., compilers), and the final stage only includes the compiled artifacts.
+            - This approach reduces image size and improves performance.
+            - Example:
+                    FROM maven:3.8.5 AS build
+                    WORKDIR /app
+                    COPY . .
+                    RUN mvn package
+                    FROM openjdk:11-jre-slim
+                    COPY --from=build /app/target/app.jar /app/app.jar
+                    CMD ["java", "-jar", "/app/app.jar"]
+
+    -> Copy On Write (CoW) Mechanism:
+            - Docker uses a Copy-on-Write system to optimize storage and performance.
+            - Layers are shared between containers, and only modified files are copied when changes occur.
+            - This improves efficiency and reduces duplication of data.
+
+Performance Optimization Strategies:
+---------------------------------------------
+    -> Reducing Layers:
+            - Minimize the number of RUN instructions to reduce image size and build time.
+            - Combine commands using logical operators (e.g., &&) to create fewer layers.
+            - Example:
+                    RUN apt-get update && apt-get install -y curl vim && rm -rf /var/lib/apt/lists/*
+    -> Base Image Optimization:
+            - Selecting the right base image greatly affects performance.
+            - Example:
+                    - Use slim or alpine versions of base images when possible.
+                    - For Java applications, using JRE instead of JDK in production reduces image size significantly.
+
+Practical Application and Example:
+---------------------------------------------
+    -> Example from class:
+            - Creating a Docker image for a Java application using a multi-stage build.
+            - The first stage used a JDK for compiling the source code.
+            - The second stage used a JRE for running the final application.
+            - This method reduced the production image size and improved startup performance.
+    -> Students practiced:
+            - Writing Dockerfiles from scratch.
+            - Building and running containers.
+            - Inspecting image layers and optimizing Dockerfiles.
+
+Conclusion:
+---------------------------------------------
+    -> Covered both fundamental and advanced topics, including Dockerfiles, image optimization, and multi-stage builds.
+    -> Key takeaways:
+            - Docker simplifies deployment by providing consistent environments.
+            - Efficient Dockerfile design and layer optimization are critical for performance.
+            - Docker knowledge forms the foundation for mastering container orchestration tools like Kubernetes.

@@ -1,0 +1,91 @@
+Docker and Containerization - Class Revision Notes
+--------------------------------------------------
+
+Introduction to Docker and Containers:
+---------------------------------------------
+    What is Docker:
+            -> Docker is an open platform for developing, shipping, and running applications.
+            -> It enables developers to separate applications from underlying infrastructure for faster and more reliable software delivery.
+            -> With Docker, infrastructure can be managed in the same way as applications, ensuring consistency and scalability across environments.
+
+    Running Applications in Containers:
+            -> Containers package applications with all required components such as libraries, dependencies, and configurations.
+            -> This ensures the application runs consistently across different environments (development, testing, and production).
+            -> The methodology eliminates the “works on my machine” problem by providing uniform execution environments.
+
+Basic Docker Commands:
+---------------------------------------------
+    Running a Container:
+            -> Command: docker run
+            -> Usage: Starts a new container from a specified image.
+            -> Example: docker run -it ubuntu bash
+                    - Starts a new Ubuntu container interactively with terminal access.
+
+    Entering an Existing Container:
+            -> Command: docker exec
+            -> Usage: Runs a command inside a running container.
+            -> Example: docker exec -it <container_id> bash
+                    - Opens an interactive terminal session inside an already running container.
+
+    Inspecting Docker Containers:
+            -> docker ps: Lists all currently running containers.
+            -> docker container inspect <container_id>:
+                    - Displays detailed information about a container, including network settings, configuration, and IP address.
+
+Working with Docker Images:
+---------------------------------------------
+    Creating and Managing Images:
+            -> Typically, you start with an existing image, make changes inside the container, and then save those changes as a new image.
+            -> docker images: Lists all Docker images stored locally.
+            -> docker commit -m "<message>" <container_id> <new_image_name>:
+                    - Creates a new Docker image from a modified container.
+
+    Pushing Images to Docker Hub:
+            -> docker push <image_name>:
+                    - Uploads your Docker image to Docker Hub for sharing or deployment.
+            -> Note: The image name should begin with your Docker Hub username to successfully push it.
+
+Networking and Container Communication:
+---------------------------------------------
+    -> Containers often need to communicate with each other or external applications.
+    -> To find a container’s IP address:
+            - Use docker container inspect <container_id>.
+    -> Once the IP is known, commands like curl can be used to test communication between containers.
+    -> Docker’s networking system ensures that containers can connect through virtual bridges or custom networks for multi-container applications.
+
+Dockerfile and Image Layers:
+---------------------------------------------
+    -> Images are usually built using a Dockerfile — a script containing instructions for building a container image step-by-step.
+    -> Each instruction in a Dockerfile creates a new “layer” in the final image.
+    -> Understanding image layering helps in optimizing image build time and storage by leveraging caching.
+    -> Efficient use of layers allows reusing unchanged parts of an image during rebuilds.
+
+Practical Usage Analogies:
+---------------------------------------------
+    Detached vs. Attached Modes:
+            -> docker run -d:
+                    - Runs a container in detached mode (in the background).
+            -> Detached containers continue to run even after the terminal session ends.
+
+    Importance of Layered Filesystems:
+            -> Each Docker image consists of multiple layers.
+            -> When changes are committed to a container, Docker creates a new layer encapsulating only the modifications.
+            -> This layering mechanism provides efficient versioning and reusability of image components.
+
+Additional Insights:
+---------------------------------------------
+    -> Docker vs. Virtual Machines:
+            - Docker containers are more efficient than traditional virtual machines.
+            - Containers share the host operating system kernel, avoiding the overhead of a full guest OS.
+            - This results in faster startup times and lower resource usage.
+
+    -> Architecture Compatibility:
+            - Docker images built for one architecture (e.g., AMD64) may not be compatible with another (e.g., ARM).
+            - Developers must ensure consistent architecture usage across build and deployment environments to avoid compatibility issues.
+
+Conclusion:
+---------------------------------------------
+    -> Docker provides a powerful, consistent, and flexible platform for developing, shipping, and running applications.
+    -> Its use of containers streamlines software deployment and scaling.
+    -> Whether managing containers, debugging, or deploying at scale, Docker forms the foundation for modern DevOps workflows.
+    -> Understanding Docker concepts prepares developers for working with advanced tools like Kubernetes and container orchestration systems.
